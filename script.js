@@ -7,16 +7,19 @@ const circle = document.getElementById('circle');
 const e_btn = document.getElementById('e_btn');
 const range = document.getElementById('range');
 const rangeSpan = document.getElementById('range-span');
+
 let currentColor = null;
 
 
 e_btn.style.display = "none";
+rangeSpan.textContent = '50%';
 
 
 range.addEventListener('input', (event) => {
-    console.log(event.target.value)
-    rangeSpan.textContent = event.target.value;
-})
+    rangeSpan.textContent = `${event.target.value}%`;
+    circle.style.width = `${event.target.value}%`;
+    circle.style.height = `${event.target.value}%`;
+});
 
 
 input.addEventListener('change', (event) => {
@@ -24,5 +27,9 @@ input.addEventListener('change', (event) => {
 });
 
 btn.addEventListener('click', () => {
-    square.style.backgroundColor = currentColor;
+    if(input.value) {
+        square.style.backgroundColor = currentColor;
+        input.value = '';
+    }
+    
 });
